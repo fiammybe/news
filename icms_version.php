@@ -14,12 +14,15 @@
 
 if (!defined("ICMS_ROOT_PATH")) die("ICMS root path not defined");
 
+//get the information from the composer.json file
+$composerjson = json_decode(file_get_contents('composer.json'),true);
+
 /**  General Information  */
 $modversion = array(
-  'name'=> _MI_NEWS_MD_NAME,
-  'version'=> 1.17,
-  'description'=> _MI_NEWS_MD_DESC,
-  'author'=> "Madfish (Simon Wilkinson)",
+  'name'=> $composerjson['name'],
+  'version'=> '1.18',
+  'description'=> $composerjson['description'],
+  'author'=> "David Janssens (fiammybe)",
   'credits'=> "Functionality is based on the legacy News module, but this is a clean rewrite in IPF.",
   'help'=> "",
   'license'=> "GNU General Public License (GPL)",
@@ -34,7 +37,7 @@ $modversion = array(
 /**  Development information */
   'status_version'=> "1.18",
   'status'=> "Beta",
-  'date'=> "13 January 2015",
+  'date'=> "10 april 2019",
   'author_word'=> "This module is best used with the Sprockets utility module also installed (2.01 and higher).",
 
 /** Contributors */
@@ -57,7 +60,7 @@ $modversion['adminmenu'] = "admin/menu.php";
 /** Database information */
 $modversion['object_items'][1] = 'article';
 
-$modversion["tables"] = icms_getTablesArray($modversion['dirname'], $modversion['object_items']);
+//$modversion["tables"] = icms_getTablesArray($modversion['dirname'], $modversion['object_items']);
 
 /** Install and update informations */
 $modversion['onInstall'] = "include/onupdate.inc.php";
@@ -72,12 +75,12 @@ $modversion['search'] = array (
 /** Menu information */
 $i = 1;
 $modversion['hasMain'] = $i;
-$sprocketsModule = icms_getModuleInfo('sprockets');
-if (icms_get_module_status("sprockets")) {
-	$modversion['sub'][$i]['name'] = _MI_NEWS_TOPICS_DIRECTORY;
-	$modversion['sub'][$i]['url'] = "tags_directory.php";
-	$i++;
-}
+//$sprocketsModule = icms_getModuleInfo('sprockets');
+//if (icms_get_module_status("sprockets")) {
+//	$modversion['sub'][$i]['name'] = _MI_NEWS_TOPICS_DIRECTORY;
+//	$modversion['sub'][$i]['url'] = "tags_directory.php";
+//	$i++;
+//}
 $modversion['sub'][$i]['name'] = _MI_NEWS_ARCHIVE;
 $modversion['sub'][$i]['url'] = "archive.php";
 unset($i);
@@ -330,3 +333,5 @@ $modversion['notification']['event'][1] = array(
   'description'=> _MI_NEWS_GLOBAL_ARTICLE_PUBLISHED_NOTIFY_DSC,
   'mail_template'=> 'news_global_article_published',
   'mail_subject'=> _MI_NEWS_GLOBAL_ARTICLE_PUBLISHED_NOTIFY_SBJ);
+
+echo $modversion['name'];

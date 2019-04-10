@@ -1,0 +1,25 @@
+{
+	"name": "fiammybe/impresscms-module-news",
+  "description": "An ImpressCMS module to handle news and blogs",
+  "type": "impresscms-module",
+  "require":
+  {
+    "impresscms/composer-module-installer-plugin": "*"
+  },
+  "authors": [
+    {
+      "name": "David Janssens",
+      "role": "developer v1.18+",
+      "homepage": "https://davidjanssens.be",
+    },
+    {
+      "name": "Simon \"Madfish\" ",
+      "role": "Original developer",
+      "homepage": "https://isengard.biz"
+    }
+  ],
+  "homepage": "https://github.com/fiammybe/news",
+  "license": ["GPL-2.0-only"],
+  "readme": "README.md",
+  "keywords": ["impresscms", "module","php","blog"]
+}
